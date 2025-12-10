@@ -1,0 +1,143 @@
+
+/* --- Styles pour le Centrage du Formulaire --- */
+/* Cible le conteneur du formulaire h:form avec sa classe "formulaire-centre" */
+.formulaire-centre {
+    width: 450px; /* Définir une largeur fixe pour que 'margin: auto' fonctionne */
+    margin: 50px auto 0 auto; /* Centrage horizontal (auto) et espace en haut (50px) */
+
+    /* Styles visuels optionnels */
+    padding: 25px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    background-color: #f7f7f7;
+}
+
+/* --- Styles pour l'Alignement des Champs (Flexbox) --- */
+.form-row {
+    display: flex; /* Active l'alignement Flexbox */
+    justify-content: space-between; /* Distribue l'espace entre le label et l'input */
+    align-items: center; /* Aligne verticalement au centre */
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    flex-basis: 40%; /* Donne 40% de la largeur à l'étiquette */
+    padding-right: 15px;
+    text-align: right; /* Aligne le texte du label à droite */
+    font-weight: bold;
+}
+
+.form-row input[type="text"] {
+    flex-basis: 58%; /* Donne 58% de la largeur au champ de saisie */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* S'assure que le padding n'augmente pas la taille totale */
+}
+
+/* --- Style pour Centrer le Bouton --- */
+.form-submit {
+    text-align: center; /* Centre les éléments inline (le bouton) */
+    margin-top: 25px;
+
+    /* Set the container to use Flexbox */
+    display: flex;
+    /* Centre les boutons horizontalement dans le conteneur */
+    justify-content: center;
+    /* Add 15 pixels of space between the items */
+    gap: 15px;
+}
+.ui-button, .form-submit input[type="submit"] {
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    background-color: #3f51b5;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.ui-button:hover, .form-submit input[type="submit"]:hover {
+    background-color: #303f9f; /* La nuance plus foncée */
+}
+
+.h1-style {
+    /* Style de la police */
+    font-size: 24pt;
+    font-weight: bold;
+
+    /* Alignement et affichage */
+    text-align: center;
+    display: block; /* S'assure qu'il prend toute la largeur pour centrer le texte */
+}
+
+ul.menu-list {
+    list-style: none; /* Supprime les puces de liste par défaut */
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column; /* 🎯 Force l'empilement vertical */
+    gap: 25px; /* Espace entre les boutons */
+    align-items: center; /* Centre les <li> et les boutons horizontalement */
+    width: 100%; /* Important dans un contexte Flexbox */
+}
+
+
+/* Style général du tableau */
+.tableauStyle {
+    width: 80%; /* Occupe 80% de la largeur du conteneur */
+    margin: 20px auto; /* Centre le tableau horizontalement */
+    border-collapse: collapse; /* Supprime l'espace entre les bordures des cellules */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Petite ombre portée */
+}
+
+/* Style de l'en-tête (<thead>) */
+.headerStyle {
+    background-color: #3f51b5; /* Couleur de fond bleue */
+    color: white; /* Texte blanc */
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Appliqué à toutes les cellules d'en-tête (th ou td dans thead) */
+.headerStyle th, .headerStyle td {
+    padding: 12px 15px;
+    border: 1px solid #3f51b5; /* Bordure assortie */
+}
+
+/* Style des lignes de données */
+.tableauStyle tr {
+    border-bottom: 1px solid #dddddd; /* Ligne de séparation douce */
+}
+
+/* Style des lignes impaires (pour l'effet zébré) */
+.ligneImpaire {
+    background-color: #f3f3f3; /* Gris très clair */
+}
+
+/* Style des lignes paires (pour l'effet zébré) */
+.lignePaire {
+    background-color: #ffffff; /* Blanc */
+}
+
+/* Style appliqué à toutes les cellules de données */
+.tableauStyle td {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+/* Un petit style au survol pour améliorer l'interaction */
+.tableauStyle tr:hover {
+    background-color: #e0e0e0;
+    cursor: default;
+}
+
+.tableauStyle .ui-button {
+    padding: 5px 10px; /* Rend le bouton plus petit */
+    font-size: 0.9em;
+}
+
+.tableauStyle .ui-button:hover {
+    background-color: #303f9f !important;
+}

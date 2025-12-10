@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<f:view>
+    <h:head>
+        <h:outputStylesheet library="css" name="Styles.css"/>
+    </h:head>
+    <h:body>
+        <h1 style="text-align: center;">Ajout d'un nouveau livre</h1>
+        <p/>
+        <p/>
+
+        <div>
+            <h:form  class="formulaire-centre">
+
+                <div class="form-row">
+                    <label for="titre">Titre du livre :</label>
+                    <h:inputText id="titre" value="#{beanLivre.titre}" />
+                </div>
+
+
+                <div class="form-row">
+                    <label for="theme">Thème :</label>
+                    <h:selectOneMenu id="theme" value="#{beanLivre.numero_th}">
+                        <f:selectItems value="#{beanTheme.themes}" var="t"
+                                       itemValue="#{t.num_th}" itemLabel="#{t.lib_th}"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="form-submit">
+                    <h:commandButton value="Enregistrer le Livre" action="#{beanLivre.ajouterLivre}"/>
+                    <h:commandButton value="Retour au menu principal" action="Menu_html.xhtml" immediate="true"/>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</f:view>
+</html>

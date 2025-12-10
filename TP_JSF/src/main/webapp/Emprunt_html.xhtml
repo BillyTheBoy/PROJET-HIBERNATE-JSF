@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<f:view>
+    <h:head><h:outputStylesheet library="css" name="Styles.css"/></h:head>
+    <h:body>
+
+        <h1 style="text-align: center;">Emprunter un livre</h1>
+        <p/>
+        <div>
+        <h:form  class="formulaire-centre"> <!-- à modifier lorsque les composants seront ok -->
+            <div class="form-row">
+                <label for="lecteur">Numéro du lecteur :</label>
+                <h:inputText id="lecteur" value="#{beanEmprunt.numeroLecteur}" />
+            </div>
+            <p/>
+            <div class="form-row">
+                <label for="livre">Numéro du livre :</label>
+                <h:inputText id="livre" value="#{beanEmprunt.numeroLivre}" />
+            </div>
+
+            <div class="form-submit">
+                <h:commandButton value="Enregistrer l'emprunt" action="#{beanEmprunt.ajoutEmprunt}"/> <!-- à remplacer, et sans le immediate -->
+                <h:commandButton value="Retour au menu principal" action="Menu_html.xhtml" immediate="true"/>
+            </div>
+
+        </h:form>
+        </div>
+    </h:body>
+</f:view>
+</html>

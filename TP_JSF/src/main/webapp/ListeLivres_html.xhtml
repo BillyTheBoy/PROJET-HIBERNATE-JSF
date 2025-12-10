@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<f:view>
+    <h:head>
+        <h:outputStylesheet library="css" name="Styles.css"/>
+    </h:head>
+    <h:body>
+        <h:outputText value="Liste de tous les livres" styleClass="h1-style"/>
+
+        <h:dataTable value = "#{beanLivre.livres}" var = "livre" border="1">
+            <h:column>
+                <f:facet name="header">Numéro</f:facet>
+                <h:outputText value="#{livre.num_li}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">titre</f:facet>
+                <h:outputText value="#{livre.titre_li}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">nom theme</f:facet>
+                <h:outputText value="#{livre.theme.lib_th}"/>
+            </h:column>
+        </h:dataTable>
+
+        <h:form>
+            <div class="form-submit">
+                <h:commandButton value="Retour au menu principal" action="Menu_html.xhtml" immediate="true"/>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

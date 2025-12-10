@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<f:view>
+    <h:head>
+        <h:outputStylesheet library="css" name="Styles.css"/>
+    </h:head>
+    <h:body>
+
+        <h1 style="text-align: center;">Menu Principal</h1>
+        <p/>
+
+        <div class="formulaire-centre">
+            <ul class="menu-list">
+                <li>
+                    <h:outputLink value="ListeThemes_html.xhtml" styleClass="ui-button">
+                        Liste des Thèmes
+                    </h:outputLink>
+                </li>
+                <li>
+                    <h:outputLink value="ListeLivres_html.xhtml" styleClass="ui-button">
+                        Liste de tous les Livres
+                    </h:outputLink>
+                </li>
+                <li>
+                    <h:outputLink value="AjoutLivre_html.xhtml" styleClass="ui-button">
+                        Ajouter un nouveau Livre
+                    </h:outputLink>
+                </li>
+                <li>
+                    <h:outputLink value="Emprunt_html.xhtml" styleClass="ui-button">
+                        Emprunter un Livre
+                    </h:outputLink>
+                </li>
+
+                <li>
+                    <h:outputLink value="Rendre_html.xhtml" styleClass="ui-button">
+                        Rendre un Livre
+                    </h:outputLink>
+                </li>
+            </ul>
+        </div>
+
+    </h:body>
+</f:view>
+</html>

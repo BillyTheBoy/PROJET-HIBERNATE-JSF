@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<f:view>
+    <h:head>
+        <h:outputStylesheet library="css" name="Styles.css"/>
+    </h:head>
+    <h:body>
+        <h1 style="text-align: center;">Liste de tous les thèmes</h1>
+
+        <h:dataTable value = "#{beanTheme.themes}" var = "theme" border="1">
+            <h:column>
+                <f:facet name="header">Numéro</f:facet>
+                <h:outputText value="#{theme.num_th}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Nom</f:facet>
+                <h:outputText value="#{theme.lib_th}"/>
+            </h:column>
+        </h:dataTable>
+
+        <h:form>
+            <div class="form-submit">
+                <h:commandButton value="Retour au menu principal" action="Menu_html.xhtml" immediate="true"/>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

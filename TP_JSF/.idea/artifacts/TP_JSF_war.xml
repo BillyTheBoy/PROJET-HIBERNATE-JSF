@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TP_JSF:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/TP_JSF_war</output-path>
+    <root id="archive" name="TP_JSF_war.war">
+      <element id="artifact" artifact-name="TP_JSF:war exploded" />
+    </root>
+  </artifact>
+</component>
