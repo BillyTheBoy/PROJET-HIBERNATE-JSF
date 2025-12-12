@@ -9,6 +9,7 @@ import mappedclass.Lecteur;
 import mappedclass.Livre;
 import mappedclass.Theme;
 import org.junit.jupiter.api.Test;
+import services.ServiceEmprunt;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -44,6 +45,7 @@ public class TestDAOLecteur {
         daoLivre.create(_2001);
         Emprunt emp = lecteur.emprunte(_2001);
         daoLecteur.add(emp);
+        ServiceEmprunt.getInstance().emprunterLivre(lecteur.getNumero(), _2001.getNum_li());
 
         assertThrows(DAOException.class, () -> {Emprunt emp2 = lecteur.emprunte(_2001);});
 

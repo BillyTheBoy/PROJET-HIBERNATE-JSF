@@ -9,6 +9,8 @@ public class TestConnection {
     @Test
     public void testConnection() {
         assertDoesNotThrow(()->{
-            DAOConnectionJPA.getInstance().getEntityManager();});
+            DAOConnectionJPA.getInstance().getEntityManager();
+            DAOConnectionJPA.getInstance().viderbase();
+        });
     }
 }

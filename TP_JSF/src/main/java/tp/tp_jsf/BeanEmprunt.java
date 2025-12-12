@@ -1,5 +1,6 @@
 package tp.tp_jsf;
 
+import dao.DAOException;
 import dao.DAOLecteur;
 import dao.jpa.DAOConnectionJPA;
 import dao.jpa.DAOLivreJPA;
@@ -11,6 +12,7 @@ import jakarta.inject.Named;
 import mappedclass.Emprunt;
 import mappedclass.Lecteur;
 import mappedclass.Livre;
+import services.ServiceEmprunt;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -42,46 +44,45 @@ public class BeanEmprunt implements Serializable {
 
     public String ajoutEmprunt()
     {
-        System.out.println("DEBUG - Tentative emprunt Livre ID: " + numeroLivre + " pour Lecteur ID: " + numeroLecteur);
+        System.out.println("DEBUG - Début ajoutEmprunt");
+        System.out.println("DEBUG - Valeurs reçues du formulaire : Lecteur ID=" + numeroLecteur + ", Livre ID=" + numeroLivre);
 
         try {
-            Livre livre = DAOLivreJPA.getInstance().read(numeroLivre);
-            Lecteur lecteur = DaoLecteurJPA.getInstance().read(numeroLecteur);
+            // Appel au service
+            services.ServiceEmprunt.getInstance().emprunterLivre(numeroLecteur, numeroLivre);
 
-            System.out.println("DEBUG - Livre trouvé: " + (livre != null ? livre.getTitre_li() : "null"));
+            System.out.println("DEBUG - Succès appel Service");
+            return "Menu_html.xhtml?faces-redirect=true";
 
-            Emprunt emp = new Emprunt(livre, lecteur);
-            DaoLecteurJPA.getInstance().add(emp);
-
-            return "Menu_html.xhtml";
+        } catch (DAOException ex) {
+            // ON AFFICHE L'ERREUR POUR COMPRENDRE
+            System.err.println("ERREUR DAO ATTRAPÉE : " + ex.getMessage());
+            ex.printStackTrace(); // Affiche la trace complète dans la console Wildfly
+            return null;
         } catch (Exception ex) {
-            System.out.println("ERREUR CAPTURÉE : " + ex.getMessage());
-            ex.printStackTrace(); // Affiche tout le détail dans la console
-            return null; // Reste sur la même page en cas d'erreur
+            System.err.println("AUTRE ERREUR ATTRAPÉE : " + ex.getMessage());
+            ex.printStackTrace();
+            return null;
         }
     }
 
     public List<Emprunt> getListeEmprunt()
     {
         if (numeroLecteur == 0) {
-            return null; // Ou une liste vide : new ArrayList<>();
+            return null;
         }
 
         Lecteur l = DaoLecteurJPA.getInstance().read(numeroLecteur);
 
         if (l == null) {
-            return null; // Evite le NullPointerException si l'ID n'existe pas en base
+            return null;
         }
 
         return l.getEmpruntsEnCours();
     }
 
     public void rendreLivre(){
-        Lecteur l = DaoLecteurJPA.getInstance().read(numeroLecteur);
-        Livre livre = DAOLivreJPA.getInstance().read(numeroLivre);
-        Emprunt e = l.rend(livre);
-        DaoLecteurJPA.getInstance().update(e);
-        DAOConnectionJPA.getInstance().commit();
+        ServiceEmprunt.getInstance().rendreLivre(numeroLecteur,numeroLivre);
     }
 
 }

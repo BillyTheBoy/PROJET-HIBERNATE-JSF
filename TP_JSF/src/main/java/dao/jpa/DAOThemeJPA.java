@@ -54,17 +54,13 @@ public class DAOThemeJPA implements DaoTheme {
     public void delete(Theme theme) throws DAOException {
         EntityManager em = DAOConnectionJPA.getInstance().getEntityManager();
         em.remove(theme);
-
     }
 
     @Override
     public int getNombreThemes() throws DAOException {
         EntityManager em = DAOConnectionJPA.getInstance().getEntityManager();
-
         Query q = em.createQuery("SELECT COUNT(t) FROM Theme  t");
-
         Long nb = (Long) q.getSingleResult();
-
         return nb.intValue();
     }
 }

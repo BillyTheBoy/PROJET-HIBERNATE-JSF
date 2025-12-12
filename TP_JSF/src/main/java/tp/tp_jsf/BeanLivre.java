@@ -9,6 +9,7 @@ import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import mappedclass.Livre;
 import mappedclass.Theme;
+import services.ServiceLivre;
 
 import java.util.List;
 
@@ -28,14 +29,12 @@ public class BeanLivre {
     }
 
     public String ajouterLivre(){
-        Theme th = DAOThemeJPA.getInstance().read(numero_th);
-        Livre l = new Livre(titre, th);
         try{
-            DAOLivreJPA.getInstance().create(l);
+            ServiceLivre.getInstance().ajouterLivre(titre, numero_th);
+            return "Ajouter_Livre_Succes";
         }catch(DAOException ex){
             return "Erreur_Ajouter_Livre";
         }
-        return "Ajouter_Livre_Succes";
     }
 
 

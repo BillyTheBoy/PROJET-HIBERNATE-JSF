@@ -17,8 +17,8 @@ public class DAOConnectionJPA {
         return instance;
     }
 
-    private EntityManager em;
-    private EntityTransaction tx;
+    private final EntityManager em;
+    private final EntityTransaction tx;
 
     private DAOConnectionJPA() {
         em = Persistence.createEntityManagerFactory("Livres").createEntityManager();
@@ -58,16 +58,23 @@ public class DAOConnectionJPA {
     }
 
     public void viderbase() {
-        EntityManager em = DAOConnectionJPA.getInstance().getEntityManager();
+        try{
+            EntityManager em = DAOConnectionJPA.getInstance().getEntityManager();
 
-        em.createQuery("DELETE FROM Theme").executeUpdate();
-        em.createQuery("DELETE FROM Livre").executeUpdate();
-        em.createQuery("DELETE FROM Emprunt").executeUpdate();
-        em.createQuery("DELETE FROM Lecteur").executeUpdate();
-        em.createNativeQuery("ALTER TABLE td2_dao_basic.theme AUTO_INCREMENT = 1").executeUpdate();
-        em.createNativeQuery("ALTER TABLE td2_dao_basic.livre AUTO_INCREMENT = 1").executeUpdate();
-        em.createNativeQuery("ALTER TABLE td2_dao_basic.lecteur AUTO_INCREMENT = 1").executeUpdate();
+            em.createQuery("DELETE FROM Theme").executeUpdate();
+            em.createQuery("DELETE FROM Livre").executeUpdate();
+            em.createQuery("DELETE FROM Emprunt").executeUpdate();
+            em.createQuery("DELETE FROM Lecteur").executeUpdate();
+            em.createNativeQuery("ALTER TABLE td2_dao_basic.theme AUTO_INCREMENT = 1").executeUpdate();
+            em.createNativeQuery("ALTER TABLE td2_dao_basic.livre AUTO_INCREMENT = 1").executeUpdate();
+            em.createNativeQuery("ALTER TABLE td2_dao_basic.lecteur AUTO_INCREMENT = 1").executeUpdate();
+            // on effectue tout ça avec la methode commit
+            this.commit();
+        }catch(Exception ex){
+            this.rollback();
+            ex.printStackTrace();
+            throw new RuntimeException("Erreur lors du vidage de la base");
+        }
 
-        em.getTransaction().commit();
     }
 }
